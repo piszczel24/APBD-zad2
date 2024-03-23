@@ -1,9 +1,12 @@
-﻿namespace APBDzad2;
+﻿using APBDzad2.Containers;
 
-class Program
+namespace APBDzad2;
+
+internal abstract class Program
 {
-    static void Main(string[] args)
+    private static void Main()
     {
-        Console.WriteLine("Hello, World!");
+        Container container = new LiquidContainer();
+        container.Load(9);
     }
 }
