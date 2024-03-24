@@ -1,4 +1,6 @@
-﻿namespace APBDzad2;
+﻿using APBDzad2.Exceptions;
+
+namespace APBDzad2;
 
 public abstract class Container
 {
@@ -11,28 +13,31 @@ public abstract class Container
     protected ContainerTypeLetter Type;
     protected float MaxLoadInKg = 10;
 
-    protected Container(ContainerTypeLetter type)
-    {
-        SerialNumber = $"$KON-{GetString(type)}.-{++_containerCounter}";
-    }
-
-    public virtual void Load(float mass)
-    {
-        if (mass > MaxLoadInKg) throw new OverfillException("Container is overloaded");
-        CargoMassInKg = mass;
-    }
-
-    protected abstract void Unload();
-
-    private static readonly Dictionary<ContainerTypeLetter, string> StringValues = new()
+    private static readonly Dictionary<ContainerTypeLetter, string> ContainerCodeStringValues = new()
     {
         { ContainerTypeLetter.L, "L" },
         { ContainerTypeLetter.G, "G" },
         { ContainerTypeLetter.C, "C" }
     };
 
+    protected Container()
+    {
+        SerialNumber = $"$KON-{GetString(Type)}.-{++_containerCounter}";
+    }
+
+    public virtual void Load(float mass)
+    {
+        if (mass > MaxLoadInKg) throw new OverfillException();
+        CargoMassInKg = mass;
+    }
+
+    protected virtual void Unload()
+    {
+        CargoMassInKg = 0;
+    }
+
     private static string GetString(ContainerTypeLetter type)
     {
-        return StringValues[type];
+        return ContainerCodeStringValues[type];
     }
 }

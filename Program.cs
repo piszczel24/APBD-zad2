@@ -7,6 +7,6 @@ internal abstract class Program
     private static void Main()
     {
         Container container = new LiquidContainer();
-        container.Load(9);
+        container.Load(10);
     }
 }

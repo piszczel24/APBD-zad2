@@ -2,19 +2,19 @@
 
 namespace APBDzad2.Containers;
 
-public class LiquidContainer : Container, IHazardNotifier
+public class GasContainer : Container, IHazardNotifier
 {
     public bool IsHazardous { get; private set; }
 
-    public LiquidContainer()
+
+    public GasContainer()
     {
-        Type = ContainerTypeLetter.L;
+        Type = ContainerTypeLetter.G;
     }
 
-    public override void Load(float mass)
+    protected override void Unload()
     {
-        MaxLoadInKg *= IsHazardous ? 0.5f : 0.9f;
-        base.Load(mass);
+        CargoMassInKg = 0.05f * CargoMassInKg;
     }
 
     public void NotifyHazard(string serialNumber, string hazardDescription)
