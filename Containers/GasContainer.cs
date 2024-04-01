@@ -8,7 +8,7 @@ public class GasContainer : Container, IHazardNotifier
     public bool IsHazardous { get; private set; }
 
 
-    public GasContainer()
+    public GasContainer(float heightInCm, float ownMassInKg, float depthInCm) : base(heightInCm, ownMassInKg, depthInCm)
     {
         Type = ContainerTypeLetter.G;
     }

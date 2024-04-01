@@ -7,10 +7,10 @@ public abstract class Container
 {
     private static int _containerCounter;
     protected internal float CargoMassInKg { get; protected set; }
-    protected float HeightInCm;
-    protected float OwnMassInKg;
-    protected float DepthInCm;
-    protected string SerialNumber;
+    protected internal readonly float HeightInCm;
+    protected internal readonly float OwnMassInKg;
+    protected internal readonly float DepthInCm;
+    protected internal readonly string SerialNumber;
     protected ContainerTypeLetter Type;
     protected float MaxLoadInKg = 10;
 
@@ -21,12 +21,15 @@ public abstract class Container
         { ContainerTypeLetter.C, "C" }
     };
 
-    protected Container()
+    protected Container(float heightInCm, float ownMassInKg, float depthInCm)
     {
-        SerialNumber = $"$KON-{GetString(Type)}.-{++_containerCounter}";
+        HeightInCm = heightInCm;
+        OwnMassInKg = ownMassInKg;
+        DepthInCm = depthInCm;
+        SerialNumber = $"$KON-{GetString(Type)}-{++_containerCounter}";
     }
 
-    public virtual void Load(float mass)
+    protected virtual void Load(float mass)
     {
         if (mass > MaxLoadInKg) throw new OverfillException();
         CargoMassInKg = mass;

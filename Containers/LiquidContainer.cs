@@ -7,12 +7,13 @@ public class LiquidContainer : Container, IHazardNotifier
 {
     public bool IsHazardous { get; private set; }
 
-    public LiquidContainer()
+    public LiquidContainer(float heightInCm, float ownMassInKg, float depthInCm) : base(heightInCm, ownMassInKg,
+        depthInCm)
     {
         Type = ContainerTypeLetter.L;
     }
 
-    public override void Load(float mass)
+    protected override void Load(float mass)
     {
         MaxLoadInKg *= IsHazardous ? 0.5f : 0.9f;
         base.Load(mass);

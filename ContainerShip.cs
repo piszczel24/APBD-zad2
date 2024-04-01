@@ -1,23 +1,14 @@
-﻿using APBDzad2.Enums;
+﻿namespace APBDzad2;
 
-namespace APBDzad2;
-
-public class ContainerShip
+public class ContainerShip(float maxVelocityInKnots, int maxContainers, float maxWeightInTons)
 {
-    private static int _shipCount;
-    private ContainerTypes _containerType;
     private readonly List<Container> _containers = [];
-    private const float MaxVelocityInKnots = 10;
-    private const int MaxContainers = 100;
-    private const float MaxWeightInTons = 4;
+    public readonly float MaxVelocityInKnots = maxVelocityInKnots;
+    public readonly int MaxContainers = maxContainers;
+    public readonly float MaxWeightInTons = maxWeightInTons;
     private float _currentWeight;
 
-    public ContainerShip(ContainerTypes containerType)
-    {
-        _containerType = containerType;
-    }
-
-    public void LoadContainer(Container container)
+    private void LoadContainer(Container container)
     {
         if (_containers.Count >= MaxContainers) return;
 
@@ -33,7 +24,7 @@ public class ContainerShip
         foreach (var container in containers) LoadContainer(container);
     }
 
-    public void RemoveContainer(Container container)
+    private void RemoveContainer(Container container)
     {
         _containers.Remove(container);
     }
@@ -42,12 +33,5 @@ public class ContainerShip
     {
         ship.LoadContainer(container);
         RemoveContainer(container);
-    }
-
-
-    public override string ToString()
-    {
-        return $"Statek {++_shipCount} (speed={MaxVelocityInKnots}, maxContainerNum=" +
-               $"{MaxContainers}, maxWeight={MaxWeightInTons * 1000})";
     }
 }

@@ -21,7 +21,22 @@ public class RefrigeratedContainer : Container
         { CargoTypes.Eggs, 19f }
     };
 
-    public RefrigeratedContainer(CargoTypes cargoType, float temperature)
+    private static readonly Dictionary<string, CargoTypes> CargoTypeString = new()
+    {
+        { "Bananas", CargoTypes.Bananas },
+        { "Chocolate", CargoTypes.Chocolate },
+        { "Fish", CargoTypes.Fish },
+        { "Meat", CargoTypes.Meat },
+        { "IceCream", CargoTypes.IceCream },
+        { "FrozenPizza", CargoTypes.FrozenPizza },
+        { "Cheese", CargoTypes.Cheese },
+        { "Sausages", CargoTypes.Sausages },
+        { "Butter", CargoTypes.Butter },
+        { "Eggs", CargoTypes.Eggs }
+    };
+
+    public RefrigeratedContainer(CargoTypes cargoType, float temperature, float heightInCm, float ownMassInKg,
+        float depthInCm) : base(heightInCm, ownMassInKg, depthInCm)
     {
         Type = ContainerTypeLetter.C;
         _cargoType = cargoType;
@@ -34,5 +49,10 @@ public class RefrigeratedContainer : Container
     private static float GetTemperature(CargoTypes type)
     {
         return CargoTemperature[type];
+    }
+
+    public static CargoTypes StringToCargoType(string? type)
+    {
+        return CargoTypeString[type ?? throw new ArgumentNullException(nameof(type))];
     }
 }
