@@ -1,11 +1,12 @@
-﻿using APBDzad2.Exceptions;
+﻿using APBDzad2.Enums;
+using APBDzad2.Exceptions;
 
 namespace APBDzad2;
 
 public abstract class Container
 {
     private static int _containerCounter;
-    protected float CargoMassInKg;
+    protected internal float CargoMassInKg { get; protected set; }
     protected float HeightInCm;
     protected float OwnMassInKg;
     protected float DepthInCm;
@@ -31,7 +32,7 @@ public abstract class Container
         CargoMassInKg = mass;
     }
 
-    protected virtual void Unload()
+    protected internal virtual void Unload()
     {
         CargoMassInKg = 0;
     }

@@ -1,4 +1,6 @@
-﻿namespace APBDzad2.Containers;
+﻿using APBDzad2.Enums;
+
+namespace APBDzad2.Containers;
 
 public class RefrigeratedContainer : Container
 {

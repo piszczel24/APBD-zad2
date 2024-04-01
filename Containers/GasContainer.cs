@@ -1,4 +1,5 @@
-﻿using APBDzad2.Interfaces;
+﻿using APBDzad2.Enums;
+using APBDzad2.Interfaces;
 
 namespace APBDzad2.Containers;
 
@@ -12,7 +13,7 @@ public class GasContainer : Container, IHazardNotifier
         Type = ContainerTypeLetter.G;
     }
 
-    protected override void Unload()
+    protected internal override void Unload()
     {
         CargoMassInKg = 0.05f * CargoMassInKg;
     }

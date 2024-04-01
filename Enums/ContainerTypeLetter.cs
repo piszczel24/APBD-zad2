@@ -1,4 +1,4 @@
-﻿namespace APBDzad2;
+﻿namespace APBDzad2.Enums;
 
 public enum ContainerTypeLetter
 {
